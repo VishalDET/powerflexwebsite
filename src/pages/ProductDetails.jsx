@@ -18,13 +18,21 @@ const ProductDetails = () => {
       setLoading(true);
       try {
         const res = await axios.get(`http://localhost:5000/api/products/${id}`);
-        setProduct(res.data);
+        let productData = res.data;
+        if (Array.isArray(productData)) {
+          productData = productData[0];
+        } else if (productData?.data) {
+          productData = Array.isArray(productData.data) ? productData.data[0] : productData.data;
+        }
+
+        setProduct(productData);
         
         // Fetch related products from same category
-        if (res.data.Category) {
-          const relatedRes = await axios.get(`http://localhost:5000/api/products?category=${res.data.Category}`);
+        if (productData && productData.Category) {
+          const relatedRes = await axios.get(`http://localhost:5000/api/products?category=${productData.Category}`);
           // Filter out current product and take top 4
-          setRelatedProducts(relatedRes.data.filter(p => p.ProductId !== parseInt(id)).slice(0, 4));
+          const relatedArray = Array.isArray(relatedRes.data) ? relatedRes.data : (relatedRes.data?.data || []);
+          setRelatedProducts(relatedArray.filter(p => p.ProductId !== parseInt(id)).slice(0, 4));
         }
       } catch (err) {
         console.error('Error fetching product details:', err);
@@ -70,8 +78,8 @@ const ProductDetails = () => {
     <PageWrapper>
       <div className="product-details-page">
         <Helmet>
-          <title>{product.ProductName} | Powerflex Industries</title>
-          <meta name="description" content={product.Description || `Details for ${product.ProductName}`} />
+          <title>{`${product?.ProductName || 'Product'} | Powerflex Industries`}</title>
+          <meta name="description" content={product?.Description || `Details for ${product?.ProductName || 'Product'}`} />
         </Helmet>
 
         {/* Breadcrumbs */}

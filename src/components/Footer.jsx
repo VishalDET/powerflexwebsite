@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  Facebook, 
-  Twitter, 
-  Instagram, 
-  Mail, 
-  Phone, 
-  MapPin, 
-  ChevronRight, 
+import {
+  Facebook,
+  Twitter,
+  Instagram,
+  Mail,
+  Phone,
+  MapPin,
+  ChevronRight,
   Send,
   Linkedin
 } from 'lucide-react';
@@ -73,9 +73,9 @@ const Footer = () => {
             <form className="footer-form-premium" onSubmit={handleSubscribe}>
               <div className="input-group-premium">
                 <Mail size={18} className="input-icon" />
-                <input 
-                  type="email" 
-                  placeholder="Your Work Email" 
+                <input
+                  type="email"
+                  placeholder="Your Work Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -102,7 +102,7 @@ const Footer = () => {
               </li>
               <li>
                 <div className="contact-icon-box"><Mail size={18} /></div>
-                <span>info@powerflexind.com</span>
+                <span>marketing@powerflexind.com</span>
               </li>
             </ul>
           </div>

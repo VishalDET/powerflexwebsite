@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { motion } from 'framer-motion';
+import { FileText, ShieldCheck, Star } from 'lucide-react';
 import axios from 'axios';
+import PageWrapper from '../components/PageWrapper';
 
 const Certificates = () => {
   const [certificates, setCertificates] = useState([]);
@@ -19,37 +22,95 @@ const Certificates = () => {
     fetchCertificates();
   }, []);
 
+  const resolveImagePath = (path) => {
+    if (!path) return '/AdImage/noimage.png';
+    return path.replace('~/', '/');
+  };
+
+  const certificateArray = Array.isArray(certificates) ? certificates : (certificates?.data || []);
+
   return (
-    <div className="certificates-page">
-      <Helmet>
-        <title>Our Certificates | Powerflex Industries</title>
-        <meta name="description" content="ISO and other industrial certifications held by Powerflex Industries, ensuring world-class quality standards." />
-      </Helmet>
+    <PageWrapper>
+      <div className="certificates-page">
+        <Helmet>
+          <title>Our Certificates | Powerflex Industries</title>
+          <meta name="description" content="ISO and other industrial certifications held by Powerflex Industries, ensuring world-class quality standards." />
+        </Helmet>
 
-      <div className="page-header section bg-dark text-white text-center" style={{padding: '4rem 0', marginTop: '80px', background: 'var(--primary-color)'}}>
-        <div className="container">
-          <h1 style={{color: 'white'}}>Quality Certifications</h1>
-        </div>
+        {/* Hero Section */}
+        <section className="certificates-hero gradient-bg">
+          <div className="container">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center"
+            >
+              <div className="icon-badge mb-4">
+                <FileText size={48} className="text-accent" />
+              </div>
+              <h1 className="text-white">Quality Certifications</h1>
+              <p className="text-white opacity-75 max-w-2xl mx-auto">
+                Discover our commitment to industry-leading standards, validated by global
+                certifications for excellence, safety, and reliability.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Certificates Grid */}
+        <section className="section-padding">
+          <div className="container">
+            {loading ? (
+              <div className="certificates-skeleton-grid">
+                {[1, 2, 3, 4, 5, 6].map(n => (
+                  <div key={n} className="skeleton-card" style={{ height: '400px' }}></div>
+                ))}
+              </div>
+            ) : (
+              <div className="certificates-grid-premium">
+                {certificateArray.map((cert, index) => (
+                  <motion.div 
+                    key={cert.CertificateId}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="certificate-card-premium"
+                  >
+                    <div className="certificate-image-container">
+                      <img 
+                        src={resolveImagePath(cert.CertificateFile)} 
+                        alt={cert.CertificateTitle} 
+                        onError={(e) => { e.target.src = '/AdImage/noimage.png'; }}
+                      />
+                      <div className="certificate-tag">
+                        <FileText size={16} />
+                        <span>Cert {cert.CertificateNo || index + 1}</span>
+                      </div>
+                    </div>
+                    <div className="certificate-content">
+                      <h3>{cert.CertificateTitle}</h3>
+                      <div className="certificate-footer">
+                        <ShieldCheck size={18} className="text-accent" />
+                        <span>Verified Standard</span>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            )}
+
+            {!loading && certificateArray.length === 0 && (
+              <div className="empty-state text-center py-5">
+                <Star size={64} className="text-muted mb-4 opacity-20" />
+                <h3>No Certificates Found</h3>
+                <p>We are constantly updating our records. Check back soon!</p>
+              </div>
+            )}
+          </div>
+        </section>
       </div>
-
-      <section className="section">
-        <div className="container">
-          {loading ? (
-            <div className="text-center">Loading certificates...</div>
-          ) : (
-            <div className="grid grid-3">
-              {certificates.map((cert) => (
-                <div key={cert.CertificateId} className="cert-card text-center" style={{padding: '2rem', border: '1px solid var(--gray-200)', borderRadius: '8px', cursor: 'pointer', transition: 'var(--transition)'}}>
-                  <img src={cert.ImagePath || '/AdImage/noimage.png'} alt={cert.Title} style={{maxWidth: '100%', height: '300px', objectFit: 'contain', marginBottom: '1.5rem'}} />
-                  <h4>{cert.Title}</h4>
-                </div>
-              ))}
-            </div>
-          )}
-          {!loading && certificates.length === 0 && <div className="text-center">No certification records found.</div>}
-        </div>
-      </section>
-    </div>
+    </PageWrapper>
   );
 };
 

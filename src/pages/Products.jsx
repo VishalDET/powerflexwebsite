@@ -73,9 +73,13 @@ const Products = () => {
     if (window.innerWidth < 1024) setSidebarOpen(false);
   };
 
-  const filteredProducts = products.filter(p =>
-    p.ProductName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    p.Category.toLowerCase().includes(searchQuery.toLowerCase())
+  const productArray = Array.isArray(products) ? products : (products?.data || []);
+  const categoryArray = Array.isArray(categories) ? categories : (categories?.data || []);
+  const subcategoryArray = Array.isArray(subcategories) ? subcategories : (subcategories?.data || []);
+
+  const filteredProducts = productArray.filter(p =>
+    (p.ProductName?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
+    (p.Category?.toLowerCase() || '').includes(searchQuery.toLowerCase())
   );
 
   const resolveImagePath = (path) => {
@@ -142,7 +146,7 @@ const Products = () => {
                       <span>All Solutions</span>
                     </div>
                   </li>
-                  {categories.map((cat) => (
+                  {categoryArray.map((cat) => (
                     <li key={cat.CategoryId} className={selectedCategory === cat.Category ? 'active-parent' : ''}>
                       <div className="cat-item" onClick={() => handleCategoryClick(cat.Category)}>
                         <span>{cat.Category}</span>
@@ -150,14 +154,14 @@ const Products = () => {
                       </div>
 
                       <AnimatePresence>
-                        {selectedCategory === cat.Category && subcategories.length > 0 && (
+                        {selectedCategory === cat.Category && subcategoryArray.length > 0 && (
                           <motion.ul
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: 'auto', opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
                             className="subcategory-nav"
                           >
-                            {subcategories.map((sub) => (
+                            {subcategoryArray.map((sub) => (
                               <li
                                 key={sub.SubcategoryId}
                                 className={selectedSubcategory === sub.Subcategory ? 'active' : ''}

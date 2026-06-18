@@ -27,6 +27,8 @@ const Awards = () => {
     return path.replace('~/', '/');
   };
 
+  const awardArray = Array.isArray(awards) ? awards : (awards?.data || []);
+
   return (
     <PageWrapper>
       <div className="awards-page">
@@ -66,7 +68,7 @@ const Awards = () => {
               </div>
             ) : (
               <div className="awards-grid-premium">
-                {awards.map((award, index) => (
+                {awardArray.map((award, index) => (
                   <motion.div 
                     key={award.AwardId}
                     initial={{ opacity: 0, y: 20 }}
@@ -98,7 +100,7 @@ const Awards = () => {
               </div>
             )}
 
-            {!loading && awards.length === 0 && (
+            {!loading && awardArray.length === 0 && (
               <div className="empty-state text-center py-5">
                 <Star size={64} className="text-muted mb-4 opacity-20" />
                 <h3>No Awards Found</h3>

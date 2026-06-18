@@ -5,6 +5,8 @@ import { FaShield as ShieldCheck, FaBolt as Zap, FaGlobe as Globe, FaAward as Aw
 import BannerCarousel from '../components/BannerCarousel';
 import LogoCarousel from '../components/LogoCarousel';
 import PageWrapper from '../components/PageWrapper';
+import Clientele from '../components/Clientele';
+import AboutUs from '../components/AboutUs';
 
 const Home = () => {
   const partnerLogos = [
@@ -127,6 +129,8 @@ const Home = () => {
           </div>
         </section>
 
+        <AboutUs />
+
         {/* Partners & Clients Section */}
         <section className="partners-clients-section">
           <div className="container">
@@ -144,6 +148,9 @@ const Home = () => {
             <LogoCarousel title="Trusted Customers" logos={customerLogos} speed={4000} direction="reverse" />
           </div>
         </section>
+
+        {/* Clientele Section */}
+        <Clientele />
         {/* CTA Section */}
         <section className="cta-section gradient-bg">
           <div className="container">
