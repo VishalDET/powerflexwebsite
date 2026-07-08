@@ -61,28 +61,75 @@ const Navbar = () => {
             {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div 
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="mobile-menu"
-            >
-              {navLinks.map((link) => (
-                <NavLink key={link.path} to={link.path} onClick={() => setIsOpen(false)}>
-                  {link.name}
-                </NavLink>
-              ))}
-              <Link to="/enquiry" className="btn-premium" style={{ margin: '1rem 2rem' }} onClick={() => setIsOpen(false)}>
-                Get Quote
-              </Link>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </nav>
+
+      {/* Mobile Menu Sidebar */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            {/* Blurred Backdrop */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="mobile-sidebar-overlay"
+              onClick={() => setIsOpen(false)}
+            />
+
+            {/* Sidebar Panel */}
+            <motion.div 
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="mobile-sidebar"
+            >
+              <div className="sidebar-header">
+                <Link to="/" className="sidebar-logo" onClick={() => setIsOpen(false)}>
+                  <img src="/img/l1.png" alt="Powerflex Logo" />
+                </Link>
+                <button className="sidebar-close" aria-label="Close menu" onClick={() => setIsOpen(false)}>
+                  <X size={24} />
+                </button>
+              </div>
+
+              <div className="sidebar-links-wrapper">
+                {navLinks.map((link, idx) => (
+                  <motion.div
+                    key={link.path}
+                    initial={{ x: 30, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{ x: 30, opacity: 0 }}
+                    transition={{ delay: idx * 0.05, duration: 0.2 }}
+                  >
+                    <NavLink 
+                      to={link.path} 
+                      className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {link.name}
+                    </NavLink>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="sidebar-footer">
+                <div className="sidebar-contact-info">
+                  <a href="tel:02267047721"><Phone size={14} /> 022 67047721</a>
+                  <a href="mailto:info@powerflexind.com"><Mail size={14} /> info@powerflexind.com</a>
+                </div>
+                <Link 
+                  to="/enquiry" 
+                  className="btn-premium sidebar-cta" 
+                  onClick={() => setIsOpen(false)}
+                >
+                  Get Quote
+                </Link>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 };

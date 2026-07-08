@@ -36,7 +36,7 @@ const Infrastructure = () => {
         {/* Hero Section */}
         <section className="infra-hero gradient-bg">
           <div className="container">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               className="infra-hero-content"
@@ -52,7 +52,7 @@ const Infrastructure = () => {
           <div className="container">
             <div className="specs-grid">
               {specs.map((spec, i) => (
-                <motion.div 
+                <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -72,7 +72,7 @@ const Infrastructure = () => {
         <section className="section-padding plant-details">
           <div className="container">
             <div className="details-grid">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 className="details-text"
@@ -80,13 +80,13 @@ const Infrastructure = () => {
                 <span className="section-tag">OUR HUB</span>
                 <h2 className="premium-title">The Powerflex Manufacturing Hub</h2>
                 <p>
-                  Powerflex Industries is in a continuous process of evolution. Our plant, 
-                  geographically located in the heart of Mumbai, boasts a 10,000 sq ft area 
+                  Powerflex Industries is in a continuous process of evolution. Our plant,
+                  geographically located in the heart of Mumbai, boasts a 10,000 sq ft area
                   dedicated to production, testing, and packaging.
                 </p>
                 <p>
-                  We maintain a large stock of hoses, fittings, and accessories off-the-shelf 
-                  to ensure immediate delivery. Our workshop features specialized crimping and 
+                  We maintain a large stock of hoses, fittings, and accessories off-the-shelf
+                  to ensure immediate delivery. Our workshop features specialized crimping and
                   testing facilities approved by <strong>PARKER POLYFLEX, GERMANY</strong>.
                 </p>
                 <div className="approval-badge">
@@ -97,8 +97,8 @@ const Infrastructure = () => {
                   </div>
                 </div>
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6 }}
@@ -122,7 +122,7 @@ const Infrastructure = () => {
             </div>
             <div className="infra-gallery">
               {infraImages.map((img, i) => (
-                <motion.div 
+                <motion.div
                   key={i}
                   whileHover={{ scale: 1.03 }}
                   className="gallery-item card-hover"
@@ -140,7 +140,7 @@ const Infrastructure = () => {
             </div>
             <div className="infra-gallery">
               {machineImages.map((img, i) => (
-                <motion.div 
+                <motion.div
                   key={i}
                   whileHover={{ scale: 1.03 }}
                   className="gallery-item card-hover"
@@ -159,12 +159,12 @@ const Infrastructure = () => {
         <section className="section-padding logistics-section">
           <div className="container">
             <div className="logistics-card gradient-bg">
-              <div className="logistics-content">
+              <div className="logistics-content text-center">
                 <FaTruckFast className="logistics-icon" />
                 <h2>Global Shipping & Logistics</h2>
                 <p>
-                  Our logistics team is well-versed with international legalities and 
-                  tied up with reputed transport operators. Every product is packed for 
+                  Our logistics team is well-versed with international legalities and
+                  tied up with reputed transport operators. Every product is packed for
                   sea-worthy and road-worthy transportation to ensure it reaches you safely.
                 </p>
               </div>

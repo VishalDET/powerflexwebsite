@@ -141,7 +141,7 @@ const ProductDetails = () => {
                       className={`tab-btn ${activeTab === 'description' ? 'active' : ''}`}
                       onClick={() => setActiveTab('description')}
                     >
-                      <Info size={18} style={{ marginRight: '8px', verticalAlign: 'middle' }} />
+                      <Info size={18} />
                       Description
                     </button>
                     {product.Features && (
@@ -149,7 +149,7 @@ const ProductDetails = () => {
                         className={`tab-btn ${activeTab === 'features' ? 'active' : ''}`}
                         onClick={() => setActiveTab('features')}
                       >
-                        <Settings size={18} style={{ marginRight: '8px', verticalAlign: 'middle' }} />
+                        <Settings size={18} />
                         Features
                       </button>
                     )}
@@ -158,7 +158,7 @@ const ProductDetails = () => {
                         className={`tab-btn ${activeTab === 'specs' ? 'active' : ''}`}
                         onClick={() => setActiveTab('specs')}
                       >
-                        <FileText size={18} style={{ marginRight: '8px', verticalAlign: 'middle' }} />
+                        <FileText size={18} />
                         Specifications
                       </button>
                     )}

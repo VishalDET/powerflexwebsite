@@ -18,6 +18,7 @@ import Certificates from './pages/Certificates';
 import Careers from './pages/Careers';
 import ContactUs from './pages/ContactUs';
 import Enquiry from './pages/Enquiry';
+import AwardsAndCertificates from './pages/AwardsAndCertificates';
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -59,6 +60,7 @@ function App() {
               <Route path="careers" element={<Careers />} />
               <Route path="contact" element={<ContactUs />} />
               <Route path="enquiry" element={<Enquiry />} />
+              <Route path="awards-certificates" element={<AwardsAndCertificates />} />
             </Route>
           </Routes>
         </AnimatePresence>

@@ -62,19 +62,22 @@ const Home = () => {
         <BannerCarousel />
 
         {/* Stats Section */}
-        <section className="stats-section">
+        <section className="stats-section-premium">
           <div className="container">
-            <div className="stats-grid">
+            <div className="stats-panel-premium">
               {stats.map((stat, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="stat-card"
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.08 }}
+                  className="stat-column-premium"
                 >
-                  <div className="stat-icon">{stat.icon}</div>
-                  <div className="stat-info">
+                  <div className="stat-icon-premium-box">
+                    {React.cloneElement(stat.icon, { size: 24 })}
+                  </div>
+                  <div className="stat-info-premium">
                     <h3>{stat.value}</h3>
                     <p>{stat.label}</p>
                   </div>

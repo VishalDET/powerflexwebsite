@@ -204,22 +204,29 @@ const Products = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: idx * 0.05 }}
                         viewport={{ once: true }}
-                        className="product-card-premium"
+                        whileHover={{ y: -8 }}
+                        className="product-card-premium clickable-product-card"
                       >
-                        <div className="product-card-img">
-                          <img
-                            src={resolveImagePath(product.Image)}
-                            alt={product.ProductName}
-                            onError={(e) => { e.target.src = '/AdImage/noimage.png'; }}
-                          />
-                        </div>
-                        <div className="product-card-body">
-                          <span className="product-tag">{product.Category}</span>
-                          <h4>{product.ProductName}</h4>
-                          <Link to={`/products/${product.ProductId}`} className="view-link">
-                            Technical Specs <ArrowRight size={16} />
-                          </Link>
-                        </div>
+                        <Link to={`/products/${product.ProductId}`} className="product-card-link-wrapper">
+                          <div className="product-card-img">
+                            <img
+                              src={resolveImagePath(product.Image)}
+                              alt={product.ProductName}
+                              onError={(e) => { e.target.src = '/AdImage/noimage.png'; }}
+                            />
+                            <div className="product-image-glass-overlay">
+                              <span>View Specs</span>
+                            </div>
+                          </div>
+                          <div className="product-card-body">
+                            <span className="product-tag">{product.Category}</span>
+                            <h4>{product.ProductName}</h4>
+                            <div className="view-link-animated">
+                              <span>Technical Specs</span>
+                              <ArrowRight size={16} className="specs-arrow-icon" />
+                            </div>
+                          </div>
+                        </Link>
                       </motion.div>
                     ))
                   )}
