@@ -42,7 +42,7 @@ const Footer = () => {
         <div className="footer-grid-premium">
           {/* Brand Column */}
           <div className="footer-brand">
-            <img src="/img/l1.png" alt="Powerflex" className="footer-logo" />
+            <img src="/img/l.png" alt="Powerflex" className="footer-logo" />
             <p>
               Leading the global market in high-pressure hydraulic solutions since 1993. Engineering excellence in every assembly.
             </p>

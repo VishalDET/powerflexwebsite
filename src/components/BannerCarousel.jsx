@@ -13,6 +13,7 @@ const BannerCarousel = () => {
     {
       id: 1,
       image: '/img/banner/Banner_002.jpg',
+      mobileImage: '/img/banner/Banner_002_mobile.png',
       title: 'Precision Engineered',
       subtitle: 'Premium Hydraulic Solutions for Global Industries',
       tag: 'SINCE 1993'
@@ -20,6 +21,7 @@ const BannerCarousel = () => {
     {
       id: 2,
       image: '/img/banner/Banner_003.jpg',
+      mobileImage: '/img/banner/Banner_003_mobile.png',
       title: 'Powering Progress',
       subtitle: 'High Pressure Hose Assemblies & Pipe Fittings',
       tag: 'QUALITY ASSURED'
@@ -27,6 +29,7 @@ const BannerCarousel = () => {
     {
       id: 3,
       image: '/img/banner/Banner_006.jpg',
+      mobileImage: '/img/banner/Banner_006_mobile.png',
       title: 'Innovation Driven',
       subtitle: 'Advanced Infrastructure for World-Class Manufacturing',
       tag: 'PARKER CERTIFIED'
@@ -52,8 +55,10 @@ const BannerCarousel = () => {
           <SwiperSlide key={slide.id}>
             <div className="slide-item">
               <div className="slide-bg-wrapper">
-                <img src={slide.image} alt={slide.title} className="slide-bg" />
-                {/* <div className="slide-overlay-gradient"></div> */}
+                <picture>
+                  <source media="(max-width: 768px)" srcSet={slide.mobileImage} />
+                  <img src={slide.image} alt={slide.title} className="slide-bg" />
+                </picture>
               </div>
 
               <div className="container slide-content-container">

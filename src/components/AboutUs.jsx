@@ -21,7 +21,7 @@ const AboutUs = () => {
               <div className="md-img-overlay"></div>
             </motion.div>
 
-            <motion.div
+            {/* <motion.div
               className="md-img-secondary-wrapper"
               initial={{ opacity: 0, x: 50, y: 50 }}
               whileInView={{ opacity: 1, x: 0, y: 0 }}
@@ -29,7 +29,7 @@ const AboutUs = () => {
               viewport={{ once: true }}
             >
               <img src="/img/machi.jpg" alt="Manufacturing Facility" className="md-img-secondary" onError={(e) => { e.currentTarget.src = '/img/portfolio-1.jpg'; e.currentTarget.onerror = null; }} />
-            </motion.div>
+            </motion.div> */}
 
             <motion.div
               className="md-experience-card"

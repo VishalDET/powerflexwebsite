@@ -43,7 +43,7 @@ const Navbar = () => {
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="container nav-container">
           <Link to="/" className="logo">
-            <img src="/img/l1.png" alt="Powerflex" />
+            <img src="/img/l.png" alt="Powerflex" />
           </Link>
 
           <div className="nav-desktop">
@@ -68,7 +68,7 @@ const Navbar = () => {
         {isOpen && (
           <>
             {/* Blurred Backdrop */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -77,7 +77,7 @@ const Navbar = () => {
             />
 
             {/* Sidebar Panel */}
-            <motion.div 
+            <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -102,8 +102,8 @@ const Navbar = () => {
                     exit={{ x: 30, opacity: 0 }}
                     transition={{ delay: idx * 0.05, duration: 0.2 }}
                   >
-                    <NavLink 
-                      to={link.path} 
+                    <NavLink
+                      to={link.path}
                       className={({ isActive }) => isActive ? 'sidebar-link active' : 'sidebar-link'}
                       onClick={() => setIsOpen(false)}
                     >
@@ -118,9 +118,9 @@ const Navbar = () => {
                   <a href="tel:02267047721"><Phone size={14} /> 022 67047721</a>
                   <a href="mailto:info@powerflexind.com"><Mail size={14} /> info@powerflexind.com</a>
                 </div>
-                <Link 
-                  to="/enquiry" 
-                  className="btn-premium sidebar-cta" 
+                <Link
+                  to="/enquiry"
+                  className="btn-premium sidebar-cta"
                   onClick={() => setIsOpen(false)}
                 >
                   Get Quote
